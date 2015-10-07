@@ -1,0 +1,38 @@
+Wed Sep 30, 2015
+    12:53:10
+    
+    13:19:06
+        Found some typos, and realized that file names matter a lot
+
+        Long Polling
+            (=) Simple technique for reading data from a server
+
+            Steps?
+                1. The client browser makes a normal request
+                2. The browser does not respond until new information is available
+                3. Once the new information is available it is sent to the client
+                4. The client then does something with the data
+                5. Then starts a new long poll
+
+            The client always keeps one long polling request open to the server and gets new data as it is available.
+
+
+            Needs?
+                1. Some sort of data payload
+                    (exp = )A chat message
+               
+                2. Some way of knowing which messages are new to the client
+                    (exp =) A counter to know what messages are new
+
+
+            {} Cases to handle?
+                New messges are available as the server polls
+
+    13:37:04
+        I was not initating the first Poll in the javascript on index.html, thus I was able to log certain messages but the jquery was never being called to add them to the textarea on the page. 
+
+        Now it's working
+
+    13:38:46
+        Break
+        
