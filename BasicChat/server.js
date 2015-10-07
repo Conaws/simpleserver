@@ -6,14 +6,14 @@ var http = require('http'),
 
 
 
-http.createServer(function (req, res) {
+http.createServer(function (request, response) {
 	//parse url
-	var url_parts = url.parse(req.url);
+	var url_parts = url.parse(request.url);
 	console.log(url_parts);
 	if(url_parts.pathname == '/') {
 		//file serving
 		fs.readFile('./index.html', function(err, data){
-			res.end(data);
+			response.end(data);
 		});
 	}
 	else if (url_parts.pathname.substr(0,5) == '/poll'){
@@ -21,12 +21,12 @@ http.createServer(function (req, res) {
 		var count = url_parts.pathname.replace(/[^0-9]*/, '');
 		console.log(count);
 		if(messages.length > count) {
-			res.end(JSON.stringify({
+			response.end(JSON.stringify({
 				count: messages.length,
 				append: messages.slice(count).join("\n")+ "\n"
 			}));
 		} else {
-			clients.push(res);
+			clients.push(response);
 		}
 	} else if (url_parts.pathname.substr(0,5) == '/msg/'){
 			//message receiving
@@ -39,8 +39,8 @@ http.createServer(function (req, res) {
 					append: msg+"\n"
 				}));
 			}
-			res.end();
+			response.end();
 		}
 
 }).listen(8080, 'localhost');
-console.log('Server fuckin running');
+console.log('Server fuckin running on port 8080');

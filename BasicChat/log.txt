@@ -37,7 +37,22 @@ Wed Sep 30, 2015
         Break
 
 Wed Oct 07, 2015
-    10:30:59
-        Moved server into a new file system, might have lost some dependencies, not remembering to start this up.
-        
+    Problem: Chat server is not serving chats (10 minutes)
+        Identified: 10:30:59
+        Hypothosis:
+            Moved server into a new file system, might have lost some dependencies, not remembering to start this up.
+
+        Solution:
+            Resolved at:10:36:12
+            This version of the chat server sends messages using the /msg/.... url, the request url is what gets sent to all the other clients who are listening to the server via long polling. 
+
+            To run this, first run the server using node server.js, then visit port 8080 (or whatever is being listened to on the server.js page), then send messages by using localhost:8080/msg/send this message
+            it will not redirect to the chat page following the send.
+
+    Challenge: Implement a Form which sends POST requests for you.
+
+    Challenge: This is super buggy
+
+
+
         
